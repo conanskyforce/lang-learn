@@ -31,6 +31,8 @@ func (engine *Engine) Run(addr string) (err error) {
 }
 
 func (engine *Engine) ServeHTTP (w http.ResponseWriter, req *http.Request) {
+	fmt.Printf("%s: %s\n",req.Method, req.URL.Path)
+	// fmt.Println(req.Method, ":", req.URL.Path)
 	key := req.Method + "-" + req.URL.Path
 	if handler, ok := engine.router[key];ok {
 		handler(w, req)
